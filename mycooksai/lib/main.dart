@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/wiew/dashboard.dart';
+import 'package:mycooksai/wiew/register_page.dart';
+import 'package:mycooksai/wiew/login_page.dart';
 
 void main() {
   runApp(const MyApp());

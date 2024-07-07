@@ -3,7 +3,8 @@ import 'package:mycooksai/const/colors.dart';
 
 class Button extends StatelessWidget {
   final String text;
-  const Button({super.key, required this.text});
+  final VoidCallback onPressed;
+  const Button({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Button extends StatelessWidget {
       height: 65,
       width: screenWidth * 0.8, // Genişlik parametresi eklendi
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.buttonColor, // Butonun arka plan rengi
           shape: RoundedRectangleBorder(
