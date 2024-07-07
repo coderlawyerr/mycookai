@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "233284536106",
+    "project_id": "mycooksai",
+    "storage_bucket": "mycooksai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233284536106:android:d741ffbe2373488c230053",
+        "android_client_info": {
+          "package_name": "com.example.mycooksai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzau3il-CTqKjtdFUsd7UHo0vrdnOyK6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
