@@ -23,4 +23,9 @@ class AuthViewMoel extends ChangeNotifier{
   _user = await _authService.getCurrentUser();
   notifyListeners();
  }
+
+ Future<void> sendPasswordResetEmail(String email)async {
+  await _authService.sendPasswordResetEmail(email);
+  
+ }
 }

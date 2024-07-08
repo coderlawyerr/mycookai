@@ -40,4 +40,13 @@ class AuthService {
           "auth servicenın ıcerısındekı login with email loginWithEmail fonksıyonunda hata: ${e.toString()}");
     }
   }
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email.trim());
+    } on FirebaseAuthException catch (e) {
+      print(
+          "auth servicenın ıcerısındekı sendPasswordResetEmail fonksıyonunda  hata: ${e.toString()}");
+    }
+  }
 }

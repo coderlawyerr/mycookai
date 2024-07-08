@@ -4,6 +4,7 @@ import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
 import 'package:mycooksai/widget/button.dart';
 import 'package:mycooksai/widget/textfield.dart';
+import 'package:mycooksai/wiew/forgot_password_page.dart';
 import 'package:mycooksai/wiew/register_page.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +93,21 @@ class _LoginPageState extends State<LoginPage> {
                             },
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage()),
+                      );
+                    },
+                    child: Text(
+                      "Şifremi Unuttum",
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                 ),
