@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
+import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
 import 'package:mycooksai/widget/button.dart';
 import 'package:mycooksai/widget/textfield.dart';
 import 'package:mycooksai/wiew/login_page.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -16,8 +18,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authViewMoel = Provider.of<AuthViewMoel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -85,6 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: TextStyle(color: Colors.black, fontSize: 16),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -102,7 +107,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 Center(
                   child: Button(
                     text: "Kayıt Ol",
-                    onPressed: () {},
+                    onPressed: ()async {
+                      
+                      try{
+                        await authViewMoel.registerWithEmail(emailController.text, passwordController.text, nameController.text);
+                      }catch(e){
+                        print("registerpage sayfasındakı hata: ${e.toString()}");
+                      }
+                      
+                      
+                    },
                   ),
                 ),
               ],

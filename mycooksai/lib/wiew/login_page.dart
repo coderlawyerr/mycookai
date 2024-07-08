@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
+import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
 import 'package:mycooksai/widget/button.dart';
 import 'package:mycooksai/widget/textfield.dart';
 import 'package:mycooksai/wiew/register_page.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +17,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    final authViewMoel = Provider.of<AuthViewMoel>(context);
+
     TextEditingController mailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
@@ -97,7 +101,15 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: Button(
                     text: "Giriş Yap",
-                    onPressed: () {},
+                    onPressed: () async {
+                      try {
+                        await authViewMoel.loginWithEmail(
+                            mailController.text, passwordController.text);
+                        print("basarıyla gırıs yapıldı");
+                      } catch (e) {
+                        print("loginpage sayfasındakı hata: ${e.toString()}");
+                      }
+                    },
                   ),
                 ),
               ],

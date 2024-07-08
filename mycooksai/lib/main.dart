@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/firebase_options.dart';
+import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
 import 'package:mycooksai/wiew/dashboard.dart';
-import 'package:mycooksai/wiew/register_page.dart';
-import 'package:mycooksai/wiew/login_page.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => AuthViewMoel())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
