@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mycooksai/model/user_model.dart';
+import 'package:mycooksai/service/database_service.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseService _databaseService = DatabaseService();
 
   UserModel? _userFromFirebase(User? user) {
     return user != null ? UserModel.fromFirebaseUser(user) : null;
@@ -25,6 +27,7 @@ class AuthService {
 
       UserModel newUser = UserModel(
           userId: userCredential.user!.uid, name: name, email: email.trim());
+          await _databaseService.createUser(newUser);
     } on FirebaseAuthException catch (e) {
       print(
           "auth servicenın ıcerısındekı regıster with email registerWithEmail fonksıyonunda hata: ${e.toString()}");
@@ -48,5 +51,9 @@ class AuthService {
       print(
           "auth servicenın ıcerısındekı sendPasswordResetEmail fonksıyonunda  hata: ${e.toString()}");
     }
+  }
+
+  Future<void> signOut()async{
+    await _auth.signOut();
   }
 }

@@ -2,26 +2,27 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
-import 'package:mycooksai/widget/button.dart';
-import 'package:mycooksai/widget/textfield.dart';
-import 'package:mycooksai/wiew/forgot_password_page.dart';
-import 'package:mycooksai/wiew/register_page.dart';
+import 'package:mycooksai/widget/custom_button.dart';
+import 'package:mycooksai/widget/custom_textfield.dart';
+import 'package:mycooksai/wiew/authentication_pages/login_page.dart';
+import 'package:mycooksai/wiew/main_page.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final authViewMoel = Provider.of<AuthViewMoel>(context);
-
-    TextEditingController mailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+    final authViewMoel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -45,14 +46,14 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 Text(
-                  "GİRİŞ YAP",
+                  "KAYIT OL",
                   style: TextStyle(
                       fontSize: 40,
                       fontFamily: "LuckiestGuy",
                       color: AppColors.whiteTextColor),
                 ),
                 const Text(
-                  "Giriş Yap Ve Harikalar Yarat",
+                  "Bilgilerinle Çabucak Kayıt ol",
                   style: TextStyle(
                     color: AppColors.whiteTextColor,
                     fontSize: 20,
@@ -63,8 +64,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 15,
                 ),
                 CustomTextField(
+                  label: "Adınız",
+                  controller: nameController,
+                ),
+                CustomTextField(
                   label: "E-Postanız",
-                  controller: mailController,
+                  controller: emailController,
                 ),
                 CustomTextField(
                   label: "Şifreniz",
@@ -77,37 +82,22 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: RichText(
                     text: TextSpan(
-                      text: 'Bir hesabın yok mu? ',
+                      text: 'Zaten bir hesabın var mı? ',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Kayıt Ol',
+                          text: 'Giriş Yap',
                           style: TextStyle(color: Colors.black, fontSize: 16),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => RegisterPage()),
+                                    builder: (context) => LoginPage()),
                               );
                             },
                         ),
                       ],
-                    ),
-                  ),
-                ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgotPasswordPage()),
-                      );
-                    },
-                    child: Text(
-                      "Şifremi Unuttum",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                 ),
@@ -116,14 +106,21 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Center(
                   child: Button(
-                    text: "Giriş Yap",
+                    text: "Kayıt Ol",
                     onPressed: () async {
                       try {
-                        await authViewMoel.loginWithEmail(
-                            mailController.text, passwordController.text);
-                        print("basarıyla gırıs yapıldı");
+                        await authViewMoel.registerWithEmail(
+                            emailController.text,
+                            passwordController.text,
+                            nameController.text);
+                            Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MainPage()),
+                                );
                       } catch (e) {
-                        print("loginpage sayfasındakı hata: ${e.toString()}");
+                        print(
+                            "registerpage sayfasındakı hata: ${e.toString()}");
                       }
                     },
                   ),

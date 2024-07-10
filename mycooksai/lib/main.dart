@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/firebase_options.dart';
 import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
-import 'package:mycooksai/wiew/dashboard.dart';
+import 'package:mycooksai/wiew/authentication_pages/dashboard.dart';
+import 'package:mycooksai/wiew/home_page.dart';
+import 'package:mycooksai/wiew/launch_page.dart';
+import 'package:mycooksai/wiew/main_page.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -13,7 +16,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => AuthViewMoel())],
+      providers: [ChangeNotifierProvider(create: (_) => AuthViewModel())],
       child: const MyApp()));
 }
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
-      home: Dashboard(),
+      home: LaunchPage(),
     );
   }
 }

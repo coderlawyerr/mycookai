@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
-import 'package:mycooksai/widget/button.dart';
-import 'package:mycooksai/wiew/register_page.dart';
-import 'package:mycooksai/wiew/login_page.dart';
+import 'package:mycooksai/widget/custom_button.dart';
+import 'package:mycooksai/wiew/authentication_pages/register_page.dart';
+import 'package:mycooksai/wiew/authentication_pages/login_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

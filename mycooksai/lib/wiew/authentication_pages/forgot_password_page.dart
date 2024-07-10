@@ -2,9 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
-import 'package:mycooksai/widget/button.dart';
-import 'package:mycooksai/widget/textfield.dart';
-import 'package:mycooksai/wiew/register_page.dart';
+import 'package:mycooksai/widget/custom_button.dart';
+import 'package:mycooksai/widget/custom_textfield.dart';
+import 'package:mycooksai/wiew/authentication_pages/register_page.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authViewModel =Provider.of<AuthViewMoel>(context);
+    final authViewModel = Provider.of<AuthViewModel>(context);
     TextEditingController emailController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -55,8 +55,9 @@ class ForgotPasswordPage extends StatelessWidget {
                 Center(
                   child: Button(
                     text: "E-Posta Gönder",
-                    onPressed: ()async {
-                      await authViewModel.sendPasswordResetEmail(emailController.text);
+                    onPressed: () async {
+                      await authViewModel
+                          .sendPasswordResetEmail(emailController.text);
                     },
                   ),
                 ),
