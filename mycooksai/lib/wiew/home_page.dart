@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mycooksai/data/recipes.dart';
 import 'package:mycooksai/widget/category_list.dart';
 import 'package:mycooksai/widget/recomendation_list.dart';
 import 'package:mycooksai/widget/user_profile.dart';
+import 'package:mycooksai/wiew/all_recomendations.dart';
 import 'package:provider/provider.dart';
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/viewmodel/auth_viewmodel.dart';
@@ -29,27 +31,6 @@ class _HomePageState extends State<HomePage> {
       {'name': 'Snacks', 'icon': Icons.fastfood},
     ];
 
-    final List<Map<String, String>> recommendations = [
-      {
-        'name': 'Hamburger',
-        'image':
-            'https://images.pexels.com/photos/1108117/pexels-photo-1108117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'by': 'Can Kırkgöz',
-      },
-      {
-        'name': 'Cheesecake',
-        'image':
-            'https://images.pexels.com/photos/4051674/pexels-photo-4051674.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'by': 'Betül ŞENSOY',
-      },
-      {
-        'name': 'Ravioli',
-        'image':
-            'https://images.pexels.com/photos/3893777/pexels-photo-3893777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'by': 'Mücahit Gökçe',
-      },
-    ];
-
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
@@ -58,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.1),
+              horizontal: MediaQuery.of(context).size.width * 0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,14 +72,22 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     "Öneriler",
                     style: TextStyle(fontSize: 16),
                   ),
-                  Text(
-                    "Hepsini gör",
-                    style: TextStyle(fontSize: 10, color: Colors.green),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AllRecomendations()));
+                    },
+                    child: Text(
+                      "Hepsini gör",
+                      style: TextStyle(fontSize: 10, color: Colors.green),
+                    ),
                   ),
                 ],
               ),

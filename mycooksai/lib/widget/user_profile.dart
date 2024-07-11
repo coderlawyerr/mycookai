@@ -18,6 +18,8 @@ class UserProfile extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundColor: Colors.grey,
+          backgroundImage: NetworkImage(
+              "https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
         ),
         SizedBox(height: 10),
         Text(
