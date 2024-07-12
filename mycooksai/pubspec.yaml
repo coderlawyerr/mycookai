@@ -41,6 +41,7 @@ dependencies:
   flutter_card_swiper: ^7.0.1
   animated_bottom_navigation_bar: ^1.3.3
   cloud_firestore: ^5.1.0
+  flutter_speed_dial: ^7.0.0
   
 
 dev_dependencies:
