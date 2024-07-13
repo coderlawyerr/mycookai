@@ -5,7 +5,7 @@ import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/wiew/favourite_page.dart';
 import 'package:mycooksai/wiew/home_page.dart';
 import 'package:mycooksai/wiew/profile_page.dart';
-import 'package:mycooksai/wiew/search_page.dart';
+import 'package:mycooksai/wiew/my_kitchem_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   static const List<Widget> _pages = <Widget>[
     HomePage(),
-    SearchPage(),
+    MyKitchenPage(),
     FavouritePage(),
     ProfilePage(),
   ];
