@@ -14,9 +14,9 @@ class AuthViewModel extends ChangeNotifier {
     _initializeUser();
   }
 
-  Future<void> _initializeUser() async{
+  Future<void> _initializeUser() async {
     _user = await _authService.getCurrentUser();
-    if(_user != null){
+    if (_user != null) {
       _user = await _databaseService.getUser(_user!.userId);
     }
     notifyListeners();
@@ -26,7 +26,7 @@ class AuthViewModel extends ChangeNotifier {
       String email, String password, String name) async {
     await _authService.registerWithEmail(email, password, name);
     _user = await _authService.getCurrentUser();
-    if (_user != null){
+    if (_user != null) {
       _user = await _databaseService.getUser(_user!.userId);
     }
     notifyListeners();
@@ -42,7 +42,7 @@ class AuthViewModel extends ChangeNotifier {
     await _authService.sendPasswordResetEmail(email);
   }
 
-  Future<void> signOut()async{
+  Future<void> signOut() async {
     await _authService.signOut();
     _user = null;
     notifyListeners();

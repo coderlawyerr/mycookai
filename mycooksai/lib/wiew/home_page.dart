@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xfff5f5f5),
       ),
       body: SingleChildScrollView(

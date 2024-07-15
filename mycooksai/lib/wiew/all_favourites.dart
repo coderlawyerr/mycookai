@@ -1,30 +1,24 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:mycooksai/data/recipes.dart';
 import 'package:mycooksai/wiew/recipe_details.dart';
 
-class AllRecomendations extends StatelessWidget {
-  const AllRecomendations({super.key});
+class AllFavourites extends StatelessWidget {
+  const AllFavourites({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text("Öneriler"),
-      ),
       body: SingleChildScrollView(
           child: Column(
         children: recommendations.map((recommendation) {
-          return RecomendationCard(context, recommendation);
+          return FavouriteCard(context, recommendation);
         }).toList(),
       )),
     );
   }
 
-  Widget RecomendationCard(
+  Widget FavouriteCard(
       BuildContext context, Map<String, String> recommendation) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
@@ -35,18 +29,20 @@ class AllRecomendations extends StatelessWidget {
         ),
         elevation: 8, // Gölgeliğin yoğunluğunu belirler
         child: GestureDetector(
-          onTap: (){Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RecipeDetails(
-                      name: recommendation['name']!,
-                      image: recommendation['image']!,
-                      by: recommendation['by']!,
-                      profileImage: recommendation['profileImage']!,
-                      recipe: recommendation['recipe']!,
-                    ),
-                  ),
-                );},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RecipeDetails(
+                  name: recommendation['name']!,
+                  image: recommendation['image']!,
+                  by: recommendation['by']!,
+                  profileImage: recommendation['profileImage']!,
+                  recipe: recommendation['recipe']!,
+                ),
+              ),
+            );
+          },
           child: Row(
             children: [
               ClipRRect(

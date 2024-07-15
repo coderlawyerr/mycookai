@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mycooksai/const/colors.dart';
 import 'package:mycooksai/wiew/favourite_page.dart';
 import 'package:mycooksai/wiew/home_page.dart';
+import 'package:mycooksai/wiew/new_recipe.dart';
 import 'package:mycooksai/wiew/profile_page.dart';
 import 'package:mycooksai/wiew/my_kitchem_page.dart';
 
@@ -34,7 +35,12 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NewRecipe()),
+          );
+        },
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),

@@ -4,7 +4,14 @@ import 'package:mycooksai/const/colors.dart';
 class Button extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  const Button({super.key, required this.text, required this.onPressed});
+  final Color? buttonColor;
+  final Color? textColor;
+  const Button(
+      {super.key,
+      this.buttonColor,
+      required this.text,
+      required this.onPressed,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,8 @@ class Button extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.buttonColor, // Butonun arka plan rengi
+          backgroundColor:
+              buttonColor ?? AppColors.buttonColor, // Butonun arka plan rengi
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0), // Kenar radius
           ),
@@ -25,9 +33,10 @@ class Button extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-                fontFamily: "Roboto",
-                fontSize: 16.0,
-                color: AppColors.blackTextColor),
+              fontFamily: "Roboto",
+              fontSize: 16.0,
+              color: textColor ?? Colors.black,
+            ),
           ),
         ),
       ),

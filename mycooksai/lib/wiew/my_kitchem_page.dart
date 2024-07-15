@@ -53,6 +53,7 @@ class _MyKitchenPageState extends State<MyKitchenPage> {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xfff5f5f5),
         title: Text("Mutfağım"),
       ),

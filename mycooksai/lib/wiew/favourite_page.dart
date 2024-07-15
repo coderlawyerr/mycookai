@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mycooksai/wiew/all_favourites.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({super.key});
@@ -7,9 +8,12 @@ class FavouritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Favoriler"),
       ),
+      body: Center(
+        child: AllFavourites(),
+      ),
     );
-    
   }
 }

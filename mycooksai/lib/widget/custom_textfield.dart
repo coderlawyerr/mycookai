@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mycooksai/const/colors.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
   final bool obscureText;
   final TextEditingController controller;
-
+  final int? maxLine;
   CustomTextField({
     required this.label,
     this.obscureText = false,
     required this.controller,
+    this.maxLine,
   });
 
   @override
@@ -29,6 +31,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: EdgeInsets.only(top: 20),
       child: TextField(
+        maxLines: getLines(),
         controller: widget.controller,
         obscureText: _obscureText,
         decoration: InputDecoration(
@@ -41,7 +44,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: BorderSide(width: 1, color: AppColors.backgroundColor),
           ),
           suffixIcon: widget.obscureText
               ? IconButton(
@@ -59,5 +62,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
     );
+  }
+
+  int getLines() {
+    int number = 1;
+    if (widget.maxLine != null) {
+      number = widget.maxLine!;
+    }
+    return number;
   }
 }

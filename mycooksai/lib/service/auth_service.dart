@@ -15,7 +15,13 @@ class AuthService {
   }
 
   Future<UserModel?> getCurrentUser() async {
-    return _userFromFirebase(_auth.currentUser);
+    try {
+      User? user = _auth.currentUser;
+      return _userFromFirebase(user);
+    } catch (e) {
+      print("getCurrentUser hatası: ${e.toString()}");
+      return null;
+    }
   }
 
   Future<void> registerWithEmail(
@@ -23,24 +29,34 @@ class AuthService {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-              email: email.trim(), password: password.trim());
+        email: email.trim(),
+        password: password.trim(),
+      );
 
       UserModel newUser = UserModel(
-          userId: userCredential.user!.uid, name: name, email: email.trim());
-          await _databaseService.createUser(newUser);
+        userId: userCredential.user!.uid,
+        name: name,
+        email: email.trim(),
+      );
+
+      await _databaseService.createUser(newUser);
     } on FirebaseAuthException catch (e) {
-      print(
-          "auth servicenın ıcerısındekı regıster with email registerWithEmail fonksıyonunda hata: ${e.toString()}");
+      print("registerWithEmail hatası: ${e.toString()}");
+    } catch (e) {
+      print("Bilinmeyen hata: ${e.toString()}");
     }
   }
 
   Future<void> loginWithEmail(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
-          email: email.trim(), password: password.trim());
+        email: email.trim(),
+        password: password.trim(),
+      );
     } on FirebaseAuthException catch (e) {
-      print(
-          "auth servicenın ıcerısındekı login with email loginWithEmail fonksıyonunda hata: ${e.toString()}");
+      print("loginWithEmail hatası: ${e.toString()}");
+    } catch (e) {
+      print("Bilinmeyen hata: ${e.toString()}");
     }
   }
 
@@ -48,12 +64,17 @@ class AuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email.trim());
     } on FirebaseAuthException catch (e) {
-      print(
-          "auth servicenın ıcerısındekı sendPasswordResetEmail fonksıyonunda  hata: ${e.toString()}");
+      print("sendPasswordResetEmail hatası: ${e.toString()}");
+    } catch (e) {
+      print("Bilinmeyen hata: ${e.toString()}");
     }
   }
 
-  Future<void> signOut()async{
-    await _auth.signOut();
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      print("signOut hatası: ${e.toString()}");
+    }
   }
 }

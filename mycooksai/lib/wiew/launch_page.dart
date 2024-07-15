@@ -35,7 +35,7 @@ class _LaunchPageState extends State<LaunchPage> {
     }else{
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Dashboard()),
+        MaterialPageRoute(builder: (context) => MainPage()),
       );
     }
   }
